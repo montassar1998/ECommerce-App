@@ -1,4 +1,5 @@
 import "./App.css";
+import Navbar from 'react-bootstrap/Navbar';
 
 function App() {
   return (
