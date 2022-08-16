@@ -11,6 +11,7 @@
   position: sticky;
   top: 0;
   left: 0;
+  z-index: 1;
 }
 
 .input {
@@ -80,9 +81,13 @@ input {
   align-items: center;
   justify-content: space-between;
   font-size: 0.7rem;
+  position: relative;
 }
 .cart span {
   margin-left: 0.5rem;
+}
+.cart a {
+  color: black;
 }
 ul {
   display: flex;
@@ -96,6 +101,7 @@ nav {
 nav ul li {
   list-style: none;
   font-size: 1.1rem;
+  font-weight: 300;
 }
 .link {
   text-decoration: none;
@@ -108,4 +114,15 @@ nav ul li {
 
 .signin a {
   color: black;
+}
+.cartTotal {
+  color: white;
+  position: absolute;
+  top: 0;
+  left: 2rem;
+  background-color: red;
+  width: 1rem;
+  display: flex;
+  justify-content: center;
+  border-radius: 10px;
 }

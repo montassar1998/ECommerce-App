@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import classes from "../styles/navbar.module.css";
 import {
@@ -6,8 +6,10 @@ import {
   AiOutlineShoppingCart,
   AiOutlineUserAdd,
 } from "react-icons/ai";
+import CartContext from "../context/CartContext";
 
 function Navbar() {
+  const context = useContext(CartContext);
   return (
     <header className={classes.header}>
       <h3 className={classes.logo}>
@@ -44,7 +46,10 @@ function Navbar() {
           <span>SIGNIN</span>
         </div>
         <div className={classes.cart}>
-          <AiOutlineShoppingCart size="2.5rem" className={classes.iconItem} />
+          <Link to="/cart">
+            <AiOutlineShoppingCart size="2.5rem" className={classes.iconItem} />
+            <span className={classes.cartTotal}>{context.cartItemsTotal}</span>
+          </Link>
           <span>CART</span>
         </div>
       </div>

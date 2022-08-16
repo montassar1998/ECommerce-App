@@ -6,11 +6,9 @@ function ProductsList({ products }) {
     <div className={classes.productList}>
       {products.map((product) => {
         return (
-          <div>
-            <div>
-              <OneProduct oneProduct={product} key={product.id} />
-            </div>
-          </div>
+          <>
+            <OneProduct oneProduct={product} />
+          </>
         );
       })}
     </div>
