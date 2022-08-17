@@ -7,7 +7,7 @@ function ProductsList({ products }) {
       {products.map((product) => {
         return (
           <>
-            <OneProduct oneProduct={product} />
+            <OneProduct oneProduct={product} key={product.id} />
           </>
         );
       })}

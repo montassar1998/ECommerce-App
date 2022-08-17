@@ -4,29 +4,25 @@ import CartContext from "../context/CartContext";
 import classes from "../styles/oneCartItem.module.css";
 
 function Cart() {
-  const context = useContext(CartContext);
+  const {
+    state: { cart },
+    dispatch,
+  } = useContext(CartContext);
+
   const [total, setTotal] = useState();
 
   useEffect(() => {
-    setTotal(context.cartItems.reduce((acc, curr) => acc + curr.price, 0));
-  }, []);
+    setTotal(
+      cart.reduce((acc, curr) => acc + Number(curr.price) * curr.qty, 0)
+    );
+  }, [cart]);
 
   let content;
-  if (context.cartItemsTotal === 0) {
-    content = <p>Cart is Empty</p>;
+  if (cart.length === 0) {
+    content = <p>Cart Empty</p>;
   } else {
-    content = (
-      <>
-        <CartItems
-          products={context.cartItems}
-          key={context.cartItems.id}
-          total={total}
-          setTotal={setTotal}
-        />
-      </>
-    );
+    content = <CartItems products={cart} />;
   }
-
   return (
     <div className={classes.cartContainer}>
       <div>{content}</div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ProductsList from "../components/ProductsList";
 import ClipLoader from "react-spinners/ClipLoader";
 import classes from "../styles/home.module.css";

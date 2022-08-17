@@ -9,7 +9,7 @@ import {
 import CartContext from "../context/CartContext";
 
 function Navbar() {
-  const context = useContext(CartContext);
+  const { state, dispatch } = useContext(CartContext);
   return (
     <header className={classes.header}>
       <h3 className={classes.logo}>
@@ -48,7 +48,10 @@ function Navbar() {
         <div className={classes.cart}>
           <Link to="/cart">
             <AiOutlineShoppingCart size="2.5rem" className={classes.iconItem} />
-            <span className={classes.cartTotal}>{context.cartItemsTotal}</span>
+
+            {state.cart.length > 0 && (
+              <span className={classes.cartTotal}>{state.cart.length}</span>
+            )}
           </Link>
           <span>CART</span>
         </div>
