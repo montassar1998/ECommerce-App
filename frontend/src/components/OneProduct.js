@@ -2,13 +2,6 @@ import React, { useContext } from "react";
 import CartContext from "../context/CartContext";
 import classes from "../styles/oneProduct.module.css";
 function OneProduct({ oneProduct }) {
-  // const handleCartButton = () => {
-  //   if (checkItem) {
-  //     context.removeFromCart(oneProduct.id);
-  //   } else {
-  //     context.addToCart(oneProduct);
-  //   }
-  // };
   const {
     state: { cart },
     dispatch,
@@ -17,7 +10,7 @@ function OneProduct({ oneProduct }) {
   const addToCart = () => {
     dispatch({
       type: "ADD_TO_CART",
-      payload: { ...oneProduct},
+      payload: { ...oneProduct },
     });
   };
   const removeFromCart = () => {
@@ -26,7 +19,6 @@ function OneProduct({ oneProduct }) {
       payload: { ...oneProduct },
     });
   };
-  console.log("cart:", cart);
 
   return (
     <div className={classes.card}>

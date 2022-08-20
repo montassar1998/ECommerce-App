@@ -1,0 +1,29 @@
+.icon {
+  position: absolute;
+  top: 0.8rem;
+  right: 0.7rem;
+  cursor: pointer;
+  margin-right: 0.3rem;
+}
+
+.input {
+  /* background-color: rgb(229, 189, 10); */
+  background-color: rgb(246, 252, 251);
+  width: 40%;
+  display: flex;
+  align-items: center;
+  /* justify-content: stretch; */
+  border: none;
+  border-radius: 0.2rem;
+  margin: 5rem auto 0rem auto;
+  padding: 0.5rem;
+  position: relative;
+}
+
+input {
+  border: none;
+  outline: none;
+  height: 2rem;
+  margin: auto;
+  flex: 0.92;
+}

@@ -1,20 +1,24 @@
-import React, { useRef } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AiOutlineUserAdd, AiOutlineMail } from "react-icons/ai";
 import { Si1Password } from "react-icons/si";
 import classes from "../styles/signup.module.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { AuthContext } from "../context/AuthContext";
 
 function SignUp() {
+  const { dispatch } = useContext(AuthContext);
   const navigate = useNavigate();
   const usernameRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
   const confirmPasswordRef = useRef();
+  const [error, setError] = useState("");
 
   const submitSignUp = async (e) => {
     e.preventDefault();
+
     if (passwordRef.current.value !== confirmPasswordRef.current.value) {
       return alert("Password doesn't match");
     } else {
@@ -25,9 +29,21 @@ function SignUp() {
       };
       await axios
         .post("http://localhost:5000/auth/signup", user)
+
         .then((response) => {
-          console.log(response.data);
-          navigate("/", { replace: true });
+          if (response.status == 200) {
+            console.log("response 2000000");
+            //save user to local storage
+            localStorage.setItem("user", JSON.stringify(response.data));
+            //update the Auth Context
+            dispatch({ type: "LOGIN", payload: response.data });
+
+            navigate("/", { replace: true });
+          }
+        })
+        .catch(function (error) {
+          console.log(error.response.data.error);
+          setError(error.response.data.error);
         });
     }
   };
@@ -77,6 +93,7 @@ function SignUp() {
               </span>
             </p>
           </div>
+          <div>{error && <div className={classes.error}>{error}!</div>}</div>
         </form>
       </div>
     </div>

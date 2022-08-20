@@ -1,7 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import ProductsList from "../components/ProductsList";
 import ClipLoader from "react-spinners/ClipLoader";
 import classes from "../styles/home.module.css";
+import Search from "../components/Search";
 
 function Home() {
   const [products, setProducts] = useState([]);
@@ -32,6 +33,7 @@ function Home() {
 
   return (
     <div>
+      <Search products={products} key={products.id} />
       <ProductsList products={products} key={products.id} />
     </div>
   );

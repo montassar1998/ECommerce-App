@@ -1,15 +1,35 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import classes from "../styles/navbar.module.css";
 import {
-  AiOutlineSearch,
   AiOutlineShoppingCart,
   AiOutlineUserAdd,
+  AiOutlineUserDelete,
 } from "react-icons/ai";
+import ClipLoader from "react-spinners/ClipLoader";
+
 import CartContext from "../context/CartContext";
+import { useLogout } from "../hooks/useLogout";
+import { AuthContext } from "../context/AuthContext";
 
 function Navbar() {
+  const [spinner, setSpinner] = useState(false);
   const { state, dispatch } = useContext(CartContext);
+  const { user } = useContext(AuthContext);
+  const { logout } = useLogout();
+
+  const handleLogout = () => {
+    setSpinner(true);
+    setTimeout(() => {
+      setSpinner(false);
+    }, 1000);
+    return logout();
+  };
+  if (spinner) {
+    return (
+      <ClipLoader className={classes.spinner} loading={spinner} size={35} />
+    );
+  }
   return (
     <header className={classes.header}>
       <h3 className={classes.logo}>
@@ -34,17 +54,33 @@ function Navbar() {
           </li>
         </ul>
       </nav>
-      <div className={classes.input}>
-        <input type="text" placeholder="Search.." />
-        <AiOutlineSearch size="1.7rem" className={classes.icon} />
-      </div>
+
       <div className={classes.icons}>
-        <div className={classes.signin}>
-          <Link to="/signup">
-            <AiOutlineUserAdd size="2.5rem" className={classes.iconItem} />
-          </Link>
-          <span>SIGNIN</span>
-        </div>
+        {/* LOGOUT */}
+
+        {user ? (
+          <>
+            <span className={classes.username}>{user.username}</span>
+            <div className={classes.signin}>
+              <Link to="/">
+                <AiOutlineUserDelete
+                  onClick={handleLogout}
+                  size="2.5rem"
+                  className={classes.iconItem}
+                />
+              </Link>
+              <span>LOGOUT</span>
+            </div>
+          </>
+        ) : (
+          <div className={classes.signin}>
+            <Link to="/signup">
+              <AiOutlineUserAdd size="2.5rem" className={classes.iconItem} />
+            </Link>
+            <span>SIGNUP</span>
+          </div>
+        )}
+
         <div className={classes.cart}>
           <Link to="/cart">
             <AiOutlineShoppingCart size="2.5rem" className={classes.iconItem} />

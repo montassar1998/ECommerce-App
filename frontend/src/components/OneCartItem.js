@@ -8,11 +8,6 @@ function OneCartItem({ item }) {
     state: { cart },
     dispatch,
   } = useContext(CartContext);
-  // const context = useContext(CartContext);
-  // const checkItem = context.checkCartItem(item.id);
-  // const [qte, setQte] = useState(item.qty);
-  // console.log({ cart: qty });
-  // const [itemPrice, setItemPrice] = useState(item.price);
 
   const changeQty = (e) => {
     dispatch({
@@ -24,20 +19,6 @@ function OneCartItem({ item }) {
     });
     console.log("target:", e.target.value);
   };
-
-  // const addQuantity = async () => {
-  //   setQte((prev) => prev + 1);
-  //   await dispatch({
-  //     type: "CHANGE_QTY",
-  //     payload: { id: item.id, qty: qte },
-  //   });
-  // };
-  // console.log(cart);
-
-  // const subQuantity = () => {
-  //   setQte((prev) => prev - 1);
-  // setItemPrice((prev) => prev - item.price);
-  // setTotal((prev) => prev - item.price);
 
   const handleRemove = () => {
     dispatch({
@@ -52,14 +33,6 @@ function OneCartItem({ item }) {
       <h3>{item.title}</h3>
       <span>${item.price}</span>
       <div>
-        {/* <button className={classes.plus} onClick={subQuantity}>
-          -
-        </button>
-        <span>{item.qty}</span>
-        <button className={classes.minus} onClick={addQuantity}>
-          +
-        </button> */}
-
         <select onChange={changeQty} value={item.qty}>
           <option value="1">1</option>
           <option value="2">2</option>

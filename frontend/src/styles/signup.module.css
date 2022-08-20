@@ -80,3 +80,13 @@ h2 {
 .login a:hover {
   color: rgb(26, 174, 180);
 }
+.error {
+  border-radius: 5px;
+  font-size: 0.8rem;
+  padding: 0.7rem;
+  color: red;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-style: italic;
+  background-color: rgb(236, 199, 199);
+}

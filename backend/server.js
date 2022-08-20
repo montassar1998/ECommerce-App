@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const userRoute = require("./routes/userRoute");
 const productRoute = require("./routes/productRoute");
-// const orderRoute = require("./routes/orderRoute");
+const orderRoute = require("./routes/orderRoute");
 const authRoute = require("./routes/authRoute");
 
 //.env file variables
@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(cors());
 app.use("/user", userRoute);
 app.use("/product", productRoute);
-// app.use("/order", orderRoute);
+app.use("/order", orderRoute);
 app.use("/auth", authRoute);
 
 //Connect to Database
