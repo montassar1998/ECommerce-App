@@ -11,11 +11,10 @@
 .container {
   height: 100%;
   width: 100%;
-  background-color: azure;
 }
 .form {
   display: flex;
-  background-color: whitesmoke;
+  background-color: rgba(255, 255, 255, 0.626);
   height: 100%;
   width: 100%;
   border-radius: 5px;

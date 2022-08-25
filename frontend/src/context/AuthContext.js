@@ -8,6 +8,8 @@ const inititalState = {
 };
 export const AuthContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, inititalState);
+
+  //remain logged in after refresh
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
     if (user) {

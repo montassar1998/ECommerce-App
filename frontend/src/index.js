@@ -11,11 +11,9 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <AuthContextProvider>
     <CartContextProvider>
-      {/* <SearchContextProvider> */}
       <BrowserRouter>
         <App />
       </BrowserRouter>
-      {/* </SearchContextProvider> */}
     </CartContextProvider>
   </AuthContextProvider>
 );

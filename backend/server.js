@@ -6,6 +6,7 @@ const userRoute = require("./routes/userRoute");
 const productRoute = require("./routes/productRoute");
 const orderRoute = require("./routes/orderRoute");
 const authRoute = require("./routes/authRoute");
+const contactRoute = require("./routes/contactRoute");
 
 //.env file variables
 const port = process.env.PORT;
@@ -20,6 +21,7 @@ app.use("/user", userRoute);
 app.use("/product", productRoute);
 app.use("/order", orderRoute);
 app.use("/auth", authRoute);
+app.use("/contact", contactRoute);
 
 //Connect to Database
 mongoose

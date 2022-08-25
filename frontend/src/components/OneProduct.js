@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import CartContext from "../context/CartContext";
 import classes from "../styles/oneProduct.module.css";
+import { Link } from "react-router-dom";
 function OneProduct({ oneProduct }) {
   const {
     state: { cart },
@@ -20,20 +21,27 @@ function OneProduct({ oneProduct }) {
     });
   };
 
+  // const goToDetails = () => {
+  //   navigate("/product/:id");
+  // };
+
   return (
     <div className={classes.card}>
-      <img src={oneProduct.img} className={classes.img} alt="head" />
+      <Link to={"/product/" + oneProduct._id} className={classes.link}>
+        <img src={oneProduct.img} className={classes.img} alt="head" />
+      </Link>
       <p className={classes.title}>{oneProduct.title}</p>
       <h6 className={classes.price}>{oneProduct.price}</h6>
-      {cart.some((p) => p.id === oneProduct.id) ? (
+      {cart.some((p) => p._id === oneProduct._id) ? (
         <button className={classes.btn} onClick={removeFromCart}>
-          REMOVE
+          Remove From Cart
         </button>
       ) : (
         <button className={classes.btn} onClick={addToCart}>
-          ADD
+          Add To Cart
         </button>
       )}
+      {console.log("cart", cart)}
     </div>
   );
 }

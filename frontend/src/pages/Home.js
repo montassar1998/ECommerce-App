@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import ProductsList from "../components/ProductsList";
 import ClipLoader from "react-spinners/ClipLoader";
 import classes from "../styles/home.module.css";
-import Search from "../components/Search";
+import Banner from "../components/Banner";
+import Footer from "../components/Footer";
 
 function Home() {
   const [products, setProducts] = useState([]);
@@ -11,7 +12,7 @@ function Home() {
     setSpinner(true);
     setTimeout(() => {
       setSpinner(false);
-    }, 1000);
+    }, 700);
     fetch("http://localhost:5000/product")
       .then((res) => res.json())
       .then((data) => {
@@ -33,8 +34,9 @@ function Home() {
 
   return (
     <div>
-      <Search products={products} key={products.id} />
+      <Banner />
       <ProductsList products={products} key={products.id} />
+      <Footer />
     </div>
   );
 }

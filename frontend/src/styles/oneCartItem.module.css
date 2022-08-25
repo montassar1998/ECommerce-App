@@ -4,10 +4,13 @@
 .deleteIcon {
   color: red;
 }
+.deleteIcon:hover {
+  cursor: pointer;
+}
 .cartContainer {
   width: 60%;
   /* max-height: 60rem; */
-  background-color: rgb(246, 252, 251);
+  background-color: rgba(246, 252, 251, 0.603);
   margin: auto;
   margin-top: 2rem;
   padding: 1rem 0rem;

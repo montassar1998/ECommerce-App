@@ -35,10 +35,12 @@ const getOneProduct = async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).json({ error: "ID Not Valid" });
   }
+
   const product = await productModel.findById(id);
   if (!product) {
     return res.status(400).json({ error: "No Such Product" });
   }
+
   res.status(200).json(product);
 };
 
