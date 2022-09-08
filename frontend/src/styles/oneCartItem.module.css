@@ -9,7 +9,6 @@
 }
 .cartContainer {
   width: 60%;
-  /* max-height: 60rem; */
   background-color: rgba(246, 252, 251, 0.603);
   margin: auto;
   margin-top: 2rem;
@@ -18,8 +17,8 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  /* align-items: center; */
   border-radius: 5px;
+  font-family: "monaco";
 }
 .img {
   background-color: white;
@@ -38,27 +37,44 @@
   width: 15rem;
   height: 3rem;
   position: relative;
-  /* margin-top: 2rem; */
   font-size: 1rem;
   padding: 7px;
   background: none;
-  background-color: rgb(102, 213, 216);
+  background-color: rgb(5, 196, 203);
   border: none;
   font-family: "poppins";
-  border-radius: 5px;
+  margin: 1rem;
+  transition: 1s ease;
 }
 .buyBtn:hover {
   cursor: pointer;
+  background-color: rgb(0, 136, 91);
   color: white;
 }
-.plus,
-.minus {
-  width: 1.5rem;
-  margin: 0 0.3rem;
-}
+
 .totalBtn {
   display: flex;
   flex-direction: column-reverse;
   justify-content: space-between;
   align-items: center;
+}
+.select {
+  width: 2.7rem;
+  padding: 0.1rem;
+  border: none;
+  outline: none;
+  font-family: "poppins";
+  background-color: rgb(119, 250, 255);
+  color: black;
+  border-radius: 5px;
+}
+
+@media (max-width: 700px) {
+  .img {
+    width: 20%;
+  }
+  .cartContainer {
+    width: 90%;
+    height: 70vh;
+  }
 }

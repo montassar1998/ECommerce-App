@@ -19,16 +19,29 @@ export const cartReducer = (state, action) => {
           q.id === action.payload.id ? (q.qty = action.payload.qty) : q.qty
         ),
       };
+    case "UPDATE_TOTAL":
+      return {
+        ...state,
+        total: action.payload,
+      };
 
     default:
       return state;
   }
 };
+// export const totalReducer = (state, action) => {
+//   switch(action.type){
+//     case "UPDATE_TOTAL":
+//       return { total: action.payload };
+//     default:
+//       return state
+//   }
+// }
 
 export const authReducer = (state, action) => {
   switch (action.type) {
     case "LOGIN":
-      return { user: action.payload };
+      return { ...state, user: action.payload };
     case "LOGOUT":
       return { user: null };
 

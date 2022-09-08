@@ -42,7 +42,7 @@ const signUp = async (req, res) => {
 
     //CALL TOKEN FUNCTION
     const token = createToken(user._id);
-    res.status(200).json({ user, token });
+    res.status(200).json({ username, token });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

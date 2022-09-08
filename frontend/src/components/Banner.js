@@ -7,7 +7,7 @@ function Banner() {
       <div className={classes.container}>
         <section className={classes.leftSection}>
           <h3>Welcome to</h3>
-          <h1>Media House</h1>
+          <h1>Audio House</h1>
           <p>-The best selling audio material website you can find-</p>
         </section>
         <section className={classes.rightSection}>

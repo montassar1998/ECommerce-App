@@ -7,7 +7,7 @@ function CartItems({ products }) {
       {products.map((item) => {
         return (
           <div>
-            <OneCartItem item={item} key={item.id} />
+            <OneCartItem item={item} key={item._id} />
           </div>
         );
       })}

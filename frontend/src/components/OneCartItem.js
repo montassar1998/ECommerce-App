@@ -33,7 +33,10 @@ function OneCartItem({ item }) {
       <h3>{item.title}</h3>
       <span>${item.price}</span>
       <div>
-        <select onChange={changeQty} value={item.qty}>
+        <select
+          onChange={changeQty}
+          value={item.qty}
+          className={classes.select}>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>

@@ -11,19 +11,17 @@ import ClipLoader from "react-spinners/ClipLoader";
 import CartContext from "../context/CartContext";
 import { useLogout } from "../hooks/useLogout";
 import { AuthContext } from "../context/AuthContext";
+import LogoutModal from "./LogoutModal";
 
 function Navbar() {
   const [spinner, setSpinner] = useState(false);
   const { state, dispatch } = useContext(CartContext);
   const { user } = useContext(AuthContext);
-  const { logout } = useLogout();
+  const [openModal, setOpenModal] = useState(false);
 
-  const handleLogout = () => {
-    setSpinner(true);
-    setTimeout(() => {
-      setSpinner(false);
-    }, 1000);
-    return logout();
+  const handleLogout = (e) => {
+    e.preventDefault();
+    setOpenModal(true);
   };
   if (spinner) {
     return (
@@ -43,9 +41,19 @@ function Navbar() {
             </Link>
           </li>
           <li>
-            <Link to="/categories" className={classes.link}>
-              Categories
-            </Link>
+            Categories
+            <ul className={classes.dropdown}>
+              <Link to="/products/headphones">
+                <li>Headphones</li>
+              </Link>
+              <Link to="/products/earphones">
+                <li>Earphones</li>
+              </Link>
+
+              <Link to="/products/speakers">
+                <li>Speakers</li>
+              </Link>
+            </ul>
           </li>
           <li>
             <Link to="/contact" className={classes.link}>
@@ -61,6 +69,7 @@ function Navbar() {
         {user ? (
           <>
             <span className={classes.username}>{user.username}</span>
+            {/* {console.log(user.username)} */}
             <div className={classes.signin}>
               <Link to="/">
                 <AiOutlineUserDelete
@@ -70,6 +79,7 @@ function Navbar() {
                 />
               </Link>
               <span>LOGOUT</span>
+              {openModal && <LogoutModal closeModal={setOpenModal} />}
             </div>
           </>
         ) : (
@@ -80,17 +90,21 @@ function Navbar() {
             <span>SIGNUP</span>
           </div>
         )}
+        <>
+          <div className={classes.cart}>
+            <Link to="/cart">
+              <AiOutlineShoppingCart
+                size="2.5rem"
+                className={classes.iconItem}
+              />
 
-        <div className={classes.cart}>
-          <Link to="/cart">
-            <AiOutlineShoppingCart size="2.5rem" className={classes.iconItem} />
-
-            {state.cart.length > 0 && (
-              <span className={classes.cartTotal}>{state.cart.length}</span>
-            )}
-          </Link>
-          <span>CART</span>
-        </div>
+              {state.cart.length > 0 && (
+                <span className={classes.cartTotal}>{state.cart.length}</span>
+              )}
+            </Link>
+            <span>CART</span>
+          </div>
+        </>
       </div>
     </header>
   );

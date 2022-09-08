@@ -1,6 +1,10 @@
 import axios from "axios";
 import React, { useContext, useRef, useState } from "react";
-import { AiOutlineUserAdd } from "react-icons/ai";
+import {
+  AiOutlineUserAdd,
+  AiOutlineEyeInvisible,
+  AiOutlineEye,
+} from "react-icons/ai";
 import { Si1Password } from "react-icons/si";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
@@ -11,16 +15,21 @@ function Login() {
   const usernameRef = useRef();
   const passwordRef = useRef();
   const [error, setError] = useState(false);
-  const { dispatch } = useContext(AuthContext);
+  const { user, dispatch } = useContext(AuthContext);
+  const [showPassword, setShowPassword] = useState(false);
+
+  function handleShowPassword() {
+    showPassword ? setShowPassword(false) : setShowPassword(true);
+  }
 
   const submitLogin = async (e) => {
     e.preventDefault();
-    const user = {
+    const user1 = {
       username: usernameRef.current.value,
       password: passwordRef.current.value,
     };
     await axios
-      .post("http://localhost:5000/auth/login", user)
+      .post("http://localhost:5000/auth/login", user1)
       .then((response) => {
         if (response.status === 200) {
           console.log(response.data);
@@ -28,6 +37,7 @@ function Login() {
           localStorage.setItem("user", JSON.stringify(response.data));
           // update the auth context
           dispatch({ type: "LOGIN", payload: response.data });
+          console.log({ user });
 
           navigate("/", { replace: true });
         }
@@ -47,7 +57,23 @@ function Login() {
           </div>
           <div className={classes.password}>
             <Si1Password className={classes.icons} size={30} />
-            <input type="password" placeholder="Password.." ref={passwordRef} />
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="Password.."
+              ref={passwordRef}
+              className={classes.password}
+            />
+            {!showPassword ? (
+              <AiOutlineEyeInvisible
+                onClick={handleShowPassword}
+                className={classes.invisible}
+              />
+            ) : (
+              <AiOutlineEye
+                onClick={handleShowPassword}
+                className={classes.invisible}
+              />
+            )}
           </div>
           <div>
             <button className={classes.loginBtn}>Log In</button>

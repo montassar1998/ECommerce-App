@@ -40,17 +40,19 @@ input {
 }
 
 .signupBtn {
-  width: 20rem;
-  margin-left: 2.8rem;
+  width: 18.5rem;
+  margin-left: 1.5rem;
   background: none;
   height: 3rem;
   border: none;
   background-color: rgb(102, 213, 216);
   font-family: "Poppins", sans-serif;
   cursor: pointer;
+  transition: 0.5s ease-in-out;
 }
 .signupBtn:hover {
   color: white;
+  background-color: rgb(24, 161, 165);
 }
 h2 {
   font-family: "Poppins", sans-serif;
@@ -88,4 +90,22 @@ h2 {
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   font-style: italic;
   background-color: rgb(236, 199, 199);
+}
+.password {
+  position: relative;
+}
+.invisible {
+  position: absolute;
+  left: 87%;
+  top: 25%;
+  cursor: pointer;
+}
+.confirmPwd {
+  position: relative;
+}
+
+@media (max-width: 700px) {
+  .signup {
+    width: 100%;
+  }
 }

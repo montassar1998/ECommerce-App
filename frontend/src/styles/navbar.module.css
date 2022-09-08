@@ -66,7 +66,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   font-size: 0.7rem;
   position: relative;
 }
@@ -87,8 +87,17 @@ nav {
 }
 nav ul li {
   list-style: none;
+  text-decoration: none;
   font-size: 1.1rem;
   font-weight: 300;
+  color: rgb(4, 126, 156);
+}
+nav ul li a {
+  text-decoration: none;
+}
+nav ul li:hover {
+  cursor: pointer;
+  color: black;
 }
 .link {
   text-decoration: none;
@@ -127,4 +136,54 @@ nav ul li {
   font-size: 0.8rem;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
+}
+.dropdown {
+  display: none;
+  padding: 1rem;
+}
+.dropdown li {
+  margin: 0.5rem 0;
+  font-family: "poppins";
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+.dropdown li a {
+  text-decoration: none;
+  list-style: none;
+}
+.dropdown li:hover {
+  color: rgb(97, 97, 97);
+  text-decoration: none;
+  list-style: none;
+  font-style: italic;
+}
+nav ul li:hover > ul {
+  display: block;
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.963);
+  border-radius: 5px;
+  /* transition: 3s ease; */
+}
+
+@media (max-width: 700px) {
+  .header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: space-around;
+  }
+  ul a {
+    margin: 1rem;
+    font-size: 80%;
+  }
+  .header > * {
+    padding: 0.3rem 5rem;
+  }
+  .logo {
+    font-size: 2rem;
+    margin-right: 2rem;
+    width: 100%;
+    text-align: center;
+  }
 }

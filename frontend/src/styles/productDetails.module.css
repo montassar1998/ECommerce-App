@@ -30,6 +30,7 @@
   margin-top: 10rem;
   width: 100%;
   transition: 0.7s ease-in-out;
+  position: relative;
 }
 .btn:hover {
   transform: scale(0.95);
@@ -81,3 +82,17 @@
   top: 20.5%;
   left: 6.5%;
 }
+
+.cartIcon {
+  /* margin: 0 1rem; */
+  position: absolute;
+  top: 0.75rem;
+  left: 7rem;
+}
+/* .cartBtnContainer {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  background-color: red;
+} */

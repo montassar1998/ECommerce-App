@@ -1,6 +1,11 @@
 import React, { useContext, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { AiOutlineUserAdd, AiOutlineMail } from "react-icons/ai";
+import {
+  AiOutlineUserAdd,
+  AiOutlineMail,
+  AiOutlineEyeInvisible,
+  AiOutlineEye,
+} from "react-icons/ai";
 import { Si1Password } from "react-icons/si";
 import classes from "../styles/signup.module.css";
 import { Link } from "react-router-dom";
@@ -8,13 +13,24 @@ import axios from "axios";
 import { AuthContext } from "../context/AuthContext";
 
 function SignUp() {
-  const { dispatch } = useContext(AuthContext);
+  const { state, dispatch } = useContext(AuthContext);
   const navigate = useNavigate();
   const usernameRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
   const confirmPasswordRef = useRef();
   const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  function handleShowPassword() {
+    showPassword ? setShowPassword(false) : setShowPassword(true);
+  }
+  function handleConfirmPassword() {
+    showConfirmPassword
+      ? setShowConfirmPassword(false)
+      : setShowConfirmPassword(true);
+  }
 
   const submitSignUp = async (e) => {
     e.preventDefault();
@@ -22,22 +38,21 @@ function SignUp() {
     if (passwordRef.current.value !== confirmPasswordRef.current.value) {
       return alert("Password doesn't match");
     } else {
-      const user = {
+      const user1 = {
         username: usernameRef.current.value,
         email: emailRef.current.value,
         password: passwordRef.current.value,
       };
       await axios
-        .post("http://localhost:5000/auth/signup", user)
-
+        .post("http://localhost:5000/auth/signup", user1)
         .then((response) => {
-          if (response.status == 200) {
-            console.log("response 2000000");
+          if (response.status === 200) {
+            console.log(response.data);
             //save user to local storage
             localStorage.setItem("user", JSON.stringify(response.data));
             //update the Auth Context
             dispatch({ type: "LOGIN", payload: response.data });
-
+            console.log({ state });
             navigate("/", { replace: true });
           }
         })
@@ -69,20 +84,44 @@ function SignUp() {
           <div className={classes.password}>
             <Si1Password className={classes.icons} size={30} />
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               placeholder="Password.."
               ref={passwordRef}
               required
+              className={classes.password}
             />
+            {!showPassword ? (
+              <AiOutlineEyeInvisible
+                onClick={handleShowPassword}
+                className={classes.invisible}
+              />
+            ) : (
+              <AiOutlineEye
+                onClick={handleShowPassword}
+                className={classes.invisible}
+              />
+            )}
           </div>
           <div className={classes.password}>
             <Si1Password className={classes.icons} size={30} />
             <input
-              type="password"
+              type={showConfirmPassword ? "text" : "password"}
               placeholder="Confirm Password.."
               ref={confirmPasswordRef}
               required
+              className={classes.confirmPwd}
             />
+            {!showConfirmPassword ? (
+              <AiOutlineEyeInvisible
+                onClick={handleConfirmPassword}
+                className={classes.invisible}
+              />
+            ) : (
+              <AiOutlineEye
+                onClick={handleConfirmPassword}
+                className={classes.invisible}
+              />
+            )}
           </div>
           <div>
             <button className={classes.signupBtn}>Sign Up</button>

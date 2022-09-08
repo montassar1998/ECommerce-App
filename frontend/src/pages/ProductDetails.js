@@ -4,6 +4,7 @@ import { useParams, Link } from "react-router-dom";
 import classes from "../styles/productDetails.module.css";
 import CartContext from "../context/CartContext";
 import { BiArrowBack } from "react-icons/bi";
+import { AiOutlineShoppingCart } from "react-icons/ai";
 
 function ProductDetails() {
   const {
@@ -54,16 +55,19 @@ function ProductDetails() {
         </section>
         <section className={classes.detailsSection}>
           <h1>{product.title}</h1>
-          <h2>{product.price}</h2>
+          <h2>${product.price}</h2>
           <p>{product.desc}</p>
           {cart.some((p) => p._id === product._id) ? (
             <button className={classes.btn} onClick={removeFromCart}>
               Remove From Cart
             </button>
           ) : (
-            <button className={classes.btn} onClick={addToCart}>
-              Add To Cart
-            </button>
+            <>
+              <button className={classes.btn} onClick={addToCart}>
+                Add To Cart
+                <AiOutlineShoppingCart size={20} className={classes.cartIcon} />
+              </button>
+            </>
           )}
         </section>
       </div>
