@@ -48,6 +48,8 @@ function SignUp() {
         .then((response) => {
           if (response.status === 200) {
             console.log(response.data);
+
+            console.log("response 2000000");
             //save user to local storage
             localStorage.setItem("user", JSON.stringify(response.data));
             //update the Auth Context
