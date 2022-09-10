@@ -70,3 +70,10 @@
 .icon {
   color: black;
 }
+
+@media (max-width: 700px) {
+  .bothSections {
+    display: flex;
+    flex-direction: column;
+  }
+}
