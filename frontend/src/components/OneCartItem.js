@@ -26,6 +26,7 @@ function OneCartItem({ item }) {
       payload: { ...item },
     });
   };
+  localStorage.setItem("cart", JSON.stringify(cart));
 
   return (
     <div className={classes.itemRow}>

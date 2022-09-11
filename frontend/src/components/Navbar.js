@@ -101,6 +101,7 @@ function Navbar() {
               {state.cart.length > 0 && (
                 <span className={classes.cartTotal}>{state.cart.length}</span>
               )}
+              {/* {JSON.parse(localStorage.getItem("cart"))} */}
             </Link>
             <span>CART</span>
           </div>

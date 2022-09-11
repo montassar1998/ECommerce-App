@@ -39,8 +39,6 @@ function Cart() {
     } else {
       // alert("log in first");
 
-     
-
       alert("You should Log In to checkout!");
       navigate("/signup");
     }
