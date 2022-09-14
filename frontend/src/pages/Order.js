@@ -36,6 +36,7 @@ function Order() {
       amount: total,
     };
     console.log("order", order);
+    //module de paiement ...
     await axios
       .post("http://localhost:5000/order", order)
       .then((response) => {
